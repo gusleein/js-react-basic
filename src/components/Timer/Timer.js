@@ -9,15 +9,15 @@ import React from 'react';
 class Timer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {seconds: 0}
+    this.state = {microseconds: 0};
   }
 
   tick() {
-    this.setState(state => ({seconds: state.seconds + 1}))
+    this.setState(state => ({microseconds: state.microseconds + 1}));
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000);
+    this.interval = setInterval(() => this.tick(), 10);
   }
 
   componentWillUnmount() {
@@ -27,7 +27,9 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        Seconds: {this.state.seconds}
+        Timer:
+        <br/>
+        {this.state.microseconds / 100}
       </div>
     )
   }
