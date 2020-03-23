@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import HelloMessage from './components/HelloMessage/HelloMessage';
 import Timer from './components/Timer/Timer';
+import TodoView from './components/Todo/TodoView';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <Timer/>
+        <TodoView/>
         <a
           className="App-link"
           href="https://reactjs.org"
