@@ -5,15 +5,18 @@
  * on 23/03/2020.
  */
 import React from 'react';
+import './Timer.css';
 
 class Timer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {microseconds: 0};
+    this.state = {microseconds: 0, timestamp: Date.now()};
   }
 
   tick() {
-    this.setState(state => ({microseconds: state.microseconds + 1}));
+    /* ∆t */
+    const dt = parseInt(((Date.now() - this.state.timestamp)).toString());
+    this.setState(state => ({microseconds: this.state.microseconds + dt, timestamp: Date.now()}));
   }
 
   componentDidMount() {
@@ -21,17 +24,21 @@ class Timer extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval)
+    clearInterval(this.interval);
+  }
+
+  calcMs() {
+    return (this.state.microseconds / 1000);
   }
 
   render() {
     return (
-      <div>
+      <div className="Timer">
         Timer:
         <br/>
-        {this.state.microseconds / 100}
+        <span className="Timer_value">{this.calcMs().toFixed(2)}</span>
       </div>
-    )
+    );
   }
 }
 
